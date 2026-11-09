@@ -2,17 +2,24 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --color-confetti-50: #faf5ff;
+  --color-confetti-100: #f3e8ff;
+  --color-confetti-200: #e9d5ff;
+  --color-confetti-300: #d8b4fe;
+  --color-confetti-400: #c084fc;
+  --color-confetti-500: #a855ff;
+  --color-confetti-600: #9333ea;
+  --color-confetti-700: #7e22ce;
+  --color-confetti-800: #6b21a8;
+  --color-confetti-900: #581c87;
+  --color-confetti-950: #3b0764;
+  --color-confetti-orange: #ff8a00;
+  --color-confetti-cyan: #00f5ff;
+  --color-confetti-ink: #0b0622;
+  --color-confetti-surface: #151033;
+}
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+:root {
+  --confetti-gradient: linear-gradient(120deg, #a855ff 0%, #ff8a00 52%, #00f5ff 100%);
 }
