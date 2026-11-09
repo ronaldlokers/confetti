@@ -2,7 +2,7 @@
 
 **Bring order to the party.**
 
-Confetti is a simple project board with explicit card ordering, reusable column layouts, stable project card keys, and an API for people and AI tools.
+Confetti is a simple board application with explicit card ordering, reusable column layouts, stable board card keys, and an API for people and AI tools.
 
 See [the project decisions](docs/project-decisions.md) for the product scope and architecture.
 
