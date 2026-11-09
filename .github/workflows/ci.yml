@@ -6,6 +6,24 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_DB: confetti
+          POSTGRES_USER: confetti
+          POSTGRES_PASSWORD: confetti
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U confetti -d confetti"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NUXT_DATABASE_URL: postgresql://confetti:confetti@localhost:5432/confetti
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
