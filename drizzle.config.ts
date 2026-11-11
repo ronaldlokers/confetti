@@ -1,6 +1,11 @@
 /// <reference types="node" />
-import { env } from 'node:process'
 import { defineConfig } from 'drizzle-kit'
+import { existsSync } from 'node:fs'
+import { env, loadEnvFile } from 'node:process'
+
+if (existsSync('.env')) {
+  loadEnvFile()
+}
 
 const url = env.NUXT_DATABASE_URL
 

@@ -10,19 +10,20 @@ jobs:
       postgres:
         image: postgres:18-alpine
         env:
-          POSTGRES_DB: confetti
+          POSTGRES_DB: confetti_test
           POSTGRES_USER: confetti
           POSTGRES_PASSWORD: confetti
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U confetti -d confetti"
+          --health-cmd "pg_isready -U confetti -d confetti_test"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 5
 
     env:
-      NUXT_DATABASE_URL: postgresql://confetti:confetti@localhost:5432/confetti
+      NUXT_DATABASE_URL: postgresql://confetti:confetti@localhost:5432/confetti_test
+      BETTER_AUTH_SECRET: confetti-test-secret-that-is-at-least-32-characters
 
     steps:
       - name: Checkout
@@ -40,11 +41,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Chromium
+        run: pnpm exec playwright-core install --with-deps chromium
+
+      - name: Migrate test database
+        run: pnpm run db:migrate
+
       - name: Lint
         run: pnpm run lint
 
       - name: Typecheck
         run: pnpm run typecheck
+
+      - name: Test
+        run: pnpm run test
 
       - name: Build
         run: pnpm run build

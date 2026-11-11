@@ -2,5 +2,20 @@
   "app": {
     "name": "Confetti",
     "tagline": "Bring order to the party."
+  },
+  "auth": {
+    "register": {
+      "title": "Create your account",
+      "description": "Start organizing your work with Confetti.",
+      "name": "Name",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Create account",
+      "nameRequired": "Enter your name.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordTooShort": "Use at least 8 characters.",
+      "passwordTooLong": "Use no more than 128 characters.",
+      "error": "We couldn't create your account. Check your details and try again."
+    }
   }
 }
