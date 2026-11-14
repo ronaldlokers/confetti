@@ -4,7 +4,7 @@ import { $fetch, createPage, setup } from '@nuxt/test-utils/e2e'
 import { eq } from 'drizzle-orm'
 import { afterAll, afterEach, describe, expect, test } from 'vitest'
 import { createDatabase } from '../../server/database'
-import { user } from '../../server/database/schema'
+import { user } from '../../server/database/schema/auth'
 
 const databaseUrl = env.NUXT_DATABASE_URL
 
