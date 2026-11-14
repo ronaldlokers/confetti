@@ -175,6 +175,9 @@ importers:
       '@iconify-json/simple-icons':
         specifier: ^1.2.101
         version: 1.2.101
+      '@iconify-json/tabler':
+        specifier: ^1.2.45
+        version: 1.2.45
       '@nuxt/ui':
         specifier: ^4.12.0
         version: 4.12.0(fa2221ddb853758d1c6a07bf51ec67ae)
@@ -1232,6 +1235,9 @@ packages:
 
   '@iconify-json/simple-icons@1.2.101':
     resolution: {integrity: sha512-MXJkMZDancJ/9I+Bgdthi9kXvn3AwWStxoTHwEPwAFQ9kMLBASO1BSstg52fNtjXeizm1Wi91R+QnWxNGkWHPQ==}
+
+  '@iconify-json/tabler@1.2.45':
+    resolution: {integrity: sha512-4JEFGeOGq0rP+neKaG1VaSNb/ptCUeS9fDsQpPAs1Mlt5mCh3gZs/EhqVyxm5fXIcMQcz7Y9Q46udrEyIZhD9g==}
 
   '@iconify/collections@1.0.762':
     resolution: {integrity: sha512-YKx0whVsIbWMZRjyVHxhBrobnRFSAa1Sb1u6cL0herB99ZrTQ/D9BqI7fVCb70Xkdv/oOuyi3luG6hOtKTkY5A==}
@@ -7047,6 +7053,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/simple-icons@1.2.101':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/tabler@1.2.45':
     dependencies:
       '@iconify/types': 2.0.0
 
