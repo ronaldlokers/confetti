@@ -44,6 +44,8 @@ useSeoMeta({
         </NuxtLink>
       </template>
 
+      <AppNavigation />
+
       <template #right>
         <UColorModeButton />
       </template>

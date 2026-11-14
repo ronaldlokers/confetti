@@ -4,6 +4,7 @@
     "tagline": "Bring order to the party."
   },
   "auth": {
+    "account": "Account",
     "register": {
       "title": "Create your account",
       "description": "Start organizing your work with Confetti.",
@@ -16,6 +17,20 @@
       "passwordTooShort": "Use at least 8 characters.",
       "passwordTooLong": "Use no more than 128 characters.",
       "error": "We couldn't create your account. Check your details and try again."
+    },
+    "login": {
+      "title": "Log in",
+      "description": "Start organizing your work with Confetti.",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Log in",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordTooShort": "Use at least 8 characters.",
+      "passwordTooLong": "Use no more than 128 characters.",
+      "error": "Incorrect email address or password. Check your details and try again."
+    },
+    "logout": {
+      "submit": "Log out"
     }
   }
 }
