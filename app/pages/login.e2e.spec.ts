@@ -121,6 +121,8 @@ describe('login page', async () => {
       })
     }).toBeNull()
 
+    await expect.poll(() => new URL(page.url()).pathname).toBe('/login')
+
     await page.getByRole('button', { name: 'Open navigation' }).click()
 
     await expect.poll(

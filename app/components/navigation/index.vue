@@ -24,7 +24,7 @@ function toggleColorMode() {
 async function logout() {
   await authClient.signOut()
   closeMenu()
-  await navigateTo('/')
+  await navigateTo('/login')
 }
 
 const navigation = computed(() => ({
