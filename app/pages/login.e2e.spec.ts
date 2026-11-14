@@ -106,10 +106,10 @@ describe('login page', async () => {
       }
     })
 
-    await page.getByRole('button', { name: 'Account' }).click()
+    await page.getByRole('button', { name: 'Open navigation' }).click()
 
     await expect.poll(
-      () => page.getByText(name).isVisible()
+      () => page.getByRole('button', { name: 'Log out' }).isVisible()
     ).toBe(true)
 
     await page.getByRole('button', { name: 'Log out' }).click()
@@ -121,7 +121,7 @@ describe('login page', async () => {
       })
     }).toBeNull()
 
-    await page.getByRole('button', { name: 'Account' }).click()
+    await page.getByRole('button', { name: 'Open navigation' }).click()
 
     await expect.poll(
       () => page.getByRole('link', { name: 'Log in' }).isVisible()
