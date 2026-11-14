@@ -28,28 +28,13 @@ useSeoMeta({
 
 <template>
   <UApp>
-    <UHeader>
-      <template #left>
-        <NuxtLink
-          to="/"
-          class="flex items-center gap-2 font-semibold"
-        >
-          <img
-            src="/brand/confetti-icon-128.png"
-            alt=""
-            width="32"
-            height="32"
-          >
-          {{ $t('app.name') }}
-        </NuxtLink>
-      </template>
-
-      <AppNavigation />
-
-      <template #right>
-        <UColorModeButton />
-      </template>
-    </UHeader>
+    <header>
+      <UContainer class="grid h-16 grid-cols-[1fr_auto_1fr] items-center">
+        <div class="col-start-2">
+          <Navigation />
+        </div>
+      </UContainer>
+    </header>
 
     <UMain>
       <NuxtPage />

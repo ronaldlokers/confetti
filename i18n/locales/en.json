@@ -3,6 +3,17 @@
     "name": "Confetti",
     "tagline": "Bring order to the party."
   },
+  "navigation": {
+    "open": "Open navigation",
+    "home": "Home",
+    "settings": "Settings",
+    "filter": "Filter navigation",
+    "noResults": "No matching navigation items."
+  },
+  "appearance": {
+    "useDarkMode": "Use dark mode",
+    "useLightMode": "Use light mode"
+  },
   "auth": {
     "account": "Account",
     "register": {
