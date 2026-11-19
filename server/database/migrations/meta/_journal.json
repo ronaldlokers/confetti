@@ -8,6 +8,13 @@
       "when": 1794351437834,
       "tag": "0000_narrow_polaris",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795104026210,
+      "tag": "0001_faulty_wolf_cub",
+      "breakpoints": true
     }
   ]
 }
