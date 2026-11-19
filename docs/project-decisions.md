@@ -76,6 +76,8 @@ This describes the intended product model. The first release deliberately implem
 
 Confetti remains one repository and one Nuxt application. All external input is validated, API contracts stay separate from database schemas and database constraints form the final integrity boundary.
 
+Retain business records for history and audits. Deactivate users instead of deleting them, and preserve their references in historical activity. Transient authentication data such as sessions and verification tokens may be deleted. Personal data may be anonymised when required without removing the related business history.
+
 Shared application services support both the web application and versioned REST API. External clients use hashed, revocable, project-scoped personal access tokens. MCP, a published OpenAPI specification and persistent idempotency follow when the implemented API surface justifies them.
 
 Current state lives in ordinary relational tables. Small, typed and versioned domain events are appended in the same transaction as each completed business operation. Events are immutable and power activity timelines, internal reactions and later integrations; Confetti is not event sourced. Consumers use at-least-once delivery and deduplicate with stable event IDs.
