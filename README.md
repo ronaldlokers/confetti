@@ -2,9 +2,9 @@
 
 **Bring order to the party.**
 
-Confetti is a simple board application with explicit card ordering, reusable column layouts, stable board card keys, and an API for people and AI tools.
+Confetti is a simple project-management application with ordered backlogs, focused boards, stable card keys, and an API for people and AI tools.
 
-See [the project decisions](docs/project-decisions.md) for the product scope and architecture.
+See [the project decisions](docs/project-decisions.md) for the product scope and architecture and [the roadmap](docs/roadmap.md) for the planned delivery phases.
 
 ## Setup
 

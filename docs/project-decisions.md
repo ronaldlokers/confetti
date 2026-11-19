@@ -4,37 +4,62 @@ Working notes to keep the project focused and consistent.
 
 ## Goal
 
-Build a polished board application that I want to use myself and that demonstrates senior full-stack TypeScript skills.
+Confetti is a project-management application that helps people organise work without unnecessary process or complexity.
 
-Confetti should keep Fizzy's simple, pleasant workflow while fixing the limitations that matter to me. The product is called **Confetti** and its tagline is **Bring order to the party.**
+The product's tagline is **Bring order to the party.**
 
 ## Product
 
-Confetti helps people organise work on boards without turning project management into a job of its own.
+Confetti helps people organise work without turning project management into a job of its own.
 
-### V1
+### Core model
 
-- Create boards with a name and user-defined card prefix from a small set of column templates.
-- Create, edit, order and move cards.
-- Give every card a stable board key such as `EX-1`; never reuse numbers.
-- Provide an API from the start so people and AI tools can manage boards.
-- Support accounts and keep board data private by default.
+This describes the intended product model. The first release deliberately implements only the subset listed below.
 
-### Not in V1
+- A project is the private collaboration boundary and represents the team workspace.
+- Each project owns one ordered backlog, shared statuses and cards. Later releases can add labels, sprints and multiple boards.
+- Cards belong to projects, not boards. Boards are filtered views of project cards.
+- A card has one canonical status and one project-wide rank, so changes appear consistently on every board.
+- Backlog sections are configurable. Cards selected for work retain their backlog section and rank so they can return to the same context.
+- Project prefixes produce card keys such as `CF-42`. Moving a card to another project assigns a new key while every previous key remains a permanent alias.
+- `Done`, `Archived` and `Deleted` are distinct lifecycle states. Normal deletion is recoverable; permanent deletion is a privileged privacy operation.
+- Sprints are project resources. A project has at most one active sprint, and unfinished work requires an explicit destination when the sprint completes.
+- Card types initially are Story, Bug and Task. Cards also support labels, multiple assignees, priority, an optional positive-integer estimate, a due date, ordered checklist tasks and card relationships.
+- Descriptions and comments use sanitized Markdown. File attachments are deferred.
+- Projects start private. Project roles are Owner, Member and Viewer; Administrator is a system-wide role.
 
-- Multiple languages; but add Nuxt i18n with English as the only locale.
-- notifications or email workflows.
-- Time tracking, estimates, sprints or reporting.
-- Plugin or automation systems.
+### First release
+
+- V1 delivers the core workflow defined in [the roadmap](roadmap.md).
+- Each project has one implicit board showing active cards in the fixed `To Do`, `In Progress` and `Done` statuses.
+- The backlog uses the fixed `Inbox`, `Refined` and `Ready` sections.
+- Boards are not stored or configurable yet. A board entity becomes relevant when multiple saved views are introduced.
+- English is the only locale, while Nuxt i18n remains in place.
+- A small authenticated, versioned REST API uses the same application services as the web UI.
+- Typed domain events are stored transactionally and power the card activity timeline.
+- The application and PostgreSQL have a reproducible deployment path.
+
+### Deferred from the first release
+
+- Project memberships beyond the initial owner, groups and scoped permissions.
+- Multiple boards, saved board filters, board templates and configurable statuses or backlog sections.
+- MCP, complete OpenAPI coverage and persistent idempotency infrastructure.
+- Cross-project transfers, historical key aliases, card relationships and extended lifecycle management.
+- Administrator bootstrap, administrative MFA and recovery codes.
+- Comments, multiple assignees, watchers, mentions and notifications.
+- Sprints, releases, analytics, public extensions and embedded AI.
+- File attachments, custom card types, custom estimation schemes and arbitrary board query languages.
 
 ## Principles
 
-- Keep the workflow fast, visual and uncluttered.
-- Prefer useful defaults over configuration.
-- Build only features I would use.
-- Treat the public API as a first-class interface, not a later addition.
-- Enforce authentication and authorization on the server.
-- Meet WCAG 2.2 AA in the core workflows.
+- The workflow stays fast, visual and uncluttered.
+- Useful defaults take priority over configuration.
+- Features address real user needs.
+- The public API is part of the product from the start.
+- Authentication and authorization are enforced on the server.
+- Changes are delivered as small vertical slices, normally achievable in one to four hours.
+- Architectural foundations are introduced when the first real feature uses them.
+- Core workflows meet WCAG 2.2 AA.
 
 ## Stack
 
@@ -49,16 +74,22 @@ Confetti helps people organise work on boards without turning project management
 
 ## Architecture
 
-Keep one repository and one Nuxt application. Validate all external input, keep API contracts separate from database schemas and use database constraints as the final integrity boundary.
+Confetti remains one repository and one Nuxt application. All external input is validated, API contracts stay separate from database schemas and database constraints form the final integrity boundary.
 
-Start with a versioned HTTP API used by the web application itself. Use personal access tokens for external clients, publish an OpenAPI specification and support idempotency for create operations.
+Shared application services support both the web application and versioned REST API. External clients use hashed, revocable, project-scoped personal access tokens. MCP, a published OpenAPI specification and persistent idempotency follow when the implemented API surface justifies them.
 
-Boards are the top-level private resource. Each board belongs to one account and owns its columns, cards, card prefix and next card number. Cards cannot move between boards in V1.
+Current state lives in ordinary relational tables. Small, typed and versioned domain events are appended in the same transaction as each completed business operation. Events are immutable and power activity timelines, internal reactions and later integrations; Confetti is not event sourced. Consumers use at-least-once delivery and deduplicate with stable event IDs.
 
-Use integer positions for ordering cards and columns. Replace this only if real usage shows it is insufficient.
+The first release board is an implicit view of a project's active cards grouped by canonical status. It has no table, filters or settings. When multiple boards are needed, add saved filtered views without changing card ownership or status.
+
+One explicit project-wide card rank defines ordering. Its implementation only changes if concurrent real-world usage shows it is insufficient.
+
+Administrator bootstrap, TOTP MFA, recovery codes and a restricted security audit log are not V1 prerequisites.
+
+Domain authorization lives in shared application services so the web UI, REST API and MCP server enforce identical rules. Personal access tokens are hashed, expiring, revocable and scoped by project and capability.
 
 ## Delivery
 
-Keep the repository public under the MIT license and never commit secrets or real personal data.
+The repository is public under the MIT license. Secrets and real personal data are never committed.
 
-Use short-lived branches and squash-merged pull requests into protected `main`. CI checks formatting, linting, types, tests and the production build.
+Development uses short-lived branches and squash-merged pull requests into protected `main`. CI checks formatting, linting, types, tests and the production build.
