@@ -11,6 +11,8 @@ export function createDatabase(databaseUrl: string) {
   return drizzle(databaseUrl)
 }
 
+export type Database = ReturnType<typeof createDatabase>
+
 export function useDatabase(
   databaseUrl = env.NUXT_DATABASE_URL ?? ''
 ) {
